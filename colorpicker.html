@@ -181,18 +181,25 @@
     }
 
     function selectColorOn(color) {
-        document.getElementById(saveSelectId).style.boxShadow = "none";
-        document.getElementById(saveSelectId).style.border = "none";
-        document.getElementById(saveSelectId).style.width = "60px";
-        document.getElementById(saveSelectId).style.height = "60px";
+        if (saveSelectId != "") {
+            document.getElementById(saveSelectId).style.boxShadow = "none";
+            document.getElementById(saveSelectId).style.border = "none";
+            //document.getElementById(saveSelectId).style.width = "60px";
+            //document.getElementById(saveSelectId).style.height = "60px";
+        }
         saveSelectId = color;
         var value = document.getElementById(color).getAttribute('value');
         document.getElementById(color).style.boxShadow = "0px 0px 9px 3px " + value;
         document.getElementById(color).style.border = "1px solid white";
-        document.getElementById(color).style.width = "58px";
-        document.getElementById(color).style.height = "58px";
+        //document.getElementById(color).style.width = "58px";
+        //document.getElementById(color).style.height = "58px";
 
+        //alert(saveIdColorPicker+" "+color);
         document.getElementById(saveIdColorPicker).style.backgroundColor = value;
+        document.getElementById(saveIdColorPicker).value = value;
+        document.getElementById(saveIdColorPicker.replace("id_", "")).value = value;
+
+        closeMenuColor()
     }
 
 
