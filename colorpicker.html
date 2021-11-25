@@ -128,7 +128,7 @@
         <div class="divin">
             <input type="hidden" id="inputcustomcolor1" value="rgb(201, 209, 255)">
             <div class="changecolor" id="customcolor1">
-                
+
             </div>
         </div>
         <div class="divin">
@@ -140,7 +140,6 @@
 </body>
 
 <script type="text/javascript">
-    
     var saveIdColorPicker = "";
     var saveSelectId = "";
     $(".changecolor").click(function(event) {
@@ -162,7 +161,7 @@
             str += '</div>';
             saveIdColorPicker = event.target.id;
             $(this).html(str);
-            var value = document.getElementById("input"+event.target.id).getAttribute('value');
+            var value = document.getElementById("input" + event.target.id).getAttribute('value');
             var rbs = document.getElementsByClassName("OptionColor");
             for (const rb of rbs) {
                 if (rb.getAttribute('value') == value) {
@@ -170,7 +169,6 @@
                     document.getElementById(rb.id).style.border = "1px solid white";
                     document.getElementById(rb.id).style.width = "58px";
                     document.getElementById(rb.id).style.height = "58px";
-                    console.log(rb.className);
                     saveSelectId = rb.id;
                     break;
                 }
@@ -183,7 +181,6 @@
     }
 
     function selectColorOn(color) {
-        console.log(saveSelectId);
         document.getElementById(saveSelectId).style.boxShadow = "none";
         document.getElementById(saveSelectId).style.border = "none";
         document.getElementById(saveSelectId).style.width = "60px";
@@ -196,7 +193,7 @@
         document.getElementById(color).style.height = "58px";
 
         document.getElementById(saveIdColorPicker).style.backgroundColor = value;
-        document.getElementById("input"+saveIdColorPicker).value = "dupa";
+        document.getElementById("input" + saveIdColorPicker).value = "dupa";
     }
 
 
