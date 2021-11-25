@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>test</title>
+    <style type="text/css">
+        body {
+            margin: 0 auto;
+            background-color: #ebf0c5;
+            z-index: auto;
+        }
+        
+        .form {
+            width: 40%;
+            height: 400px;
+            border: 1px black;
+            margin-left: 30%;
+            margin-right: 30%;
+            margin-top: 10%;
+            background-color: white;
+        }
+        
+        .divin {
+            border: 2px solid black;
+            margin: 4%;
+            width: 90%;
+            margin-bottom: 1%;
+        }
+        
+        .hole {
+            background-color: white;
+            width: 100%;
+            height: 30px;
+        }
+        
+        .changecolor {
+            width: 94%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            margin-right: 3%;
+            margin-left: 3%;
+            height: 40px;
+            background-color: pink;
+        }
+        
+        .CustomColorMenu {
+            position: relative;
+            top: 44px;
+            right: 40px;
+            bottom: 0px;
+            -webkit-box-shadow: 0px 0px 9px 1px rgba(116, 118, 150, 1);
+            -moz-box-shadow: 0px 0px 9px 1px rgba(116, 118, 150, 1);
+            box-shadow: 0px 0px 9px 1px rgba(116, 118, 150, 1);
+            width: 300px;
+            height: 230px;
+            background-color: white;
+            border-radius: 15px;
+            margin-left: 43%;
+            margin-right: 43%;
+            z-index: 20;
+        }
+        
+        .OptionColor {
+            float: left;
+            width: 60px;
+            height: 60px;
+            margin-top: 12px;
+            margin-left: 12px;
+            border-radius: 15px;
+            background-color: grey;
+            z-index: 20;
+        }
+        
+        #Color1 {
+            background-color: rgb(214, 234, 223);
+        }
+        
+        #Color2 {
+            background-color: rgb(112, 214, 255);
+        }
+        
+        #Color3 {
+            background-color: rgb(255, 214, 112);
+        }
+        
+        #Color4 {
+            background-color: rgb(224, 187, 228);
+        }
+        
+        #Color5 {
+            background-color: rgb(146, 237, 188);
+        }
+        
+        #Color6 {
+            background-color: rgb(110, 120, 255);
+        }
+        
+        #Color7 {
+            background-color: rgb(255, 226, 183);
+        }
+        
+        #Color8 {
+            background-color: rgb(255, 198, 255);
+        }
+        
+        #Color9 {
+            background-color: rgb(132, 220, 198);
+        }
+        
+        #Color10 {
+            background-color: rgb(201, 209, 255);
+        }
+        
+        #Color11 {
+            background-color: rgb(226, 226, 226);
+        }
+        
+        #Color12 {
+            background-color: rgb(254, 200, 216);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form">
+        <div class="hole"></div>
+        <div class="divin">
+            <input type="hidden" id="inputcustomcolor1" value="rgb(201, 209, 255)">
+            <div class="changecolor" id="customcolor1">
+                
+            </div>
+        </div>
+        <div class="divin">
+            <div class="changecolor" id="customcolor2" value="rgb(254, 200, 216)">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    
+    var saveIdColorPicker = "";
+    var saveSelectId = "";
+    $(".changecolor").click(function(event) {
+        if (event.target.className == "changecolor") {
+            $(".CustomColorMenu").remove();
+            var str = '<div class="CustomColorMenu" id="colorpicker">';
+            str += '<div onclick=\'selectColorOn("Color1")\' id="Color1" class="OptionColor" value="rgb(214, 234, 223)"></div>';
+            str += '<div onclick=\'selectColorOn("Color2")\' id="Color2" class="OptionColor" value="rgb(112, 214, 255)"></div>';
+            str += '<div onclick=\'selectColorOn("Color3")\' id="Color3" class="OptionColor" value="rgb(255, 214, 112)"></div>';
+            str += '<div onclick=\'selectColorOn("Color4")\' id="Color4" class="OptionColor" value="rgb(224, 187, 228)"></div>';
+            str += '<div onclick=\'selectColorOn("Color5")\' id="Color5" class="OptionColor" value="rgb(146, 237, 188)"></div>';
+            str += '<div onclick=\'selectColorOn("Color6")\' id="Color6" class="OptionColor" value="rgb(110, 120, 255)"></div>';
+            str += '<div onclick=\'selectColorOn("Color7")\' id="Color7" class="OptionColor" value="rgb(255, 226, 183)"></div>';
+            str += '<div onclick=\'selectColorOn("Color8")\' id="Color8" class="OptionColor" value="rgb(255, 198, 255)"></div>';
+            str += '<div onclick=\'selectColorOn("Color9")\' id="Color9" class="OptionColor" value="rgb(132, 220, 198)"></div>';
+            str += '<div onclick=\'selectColorOn("Color10")\' id="Color10" class="OptionColor" value="rgb(201, 209, 255)"></div>';
+            str += '<div onclick=\'selectColorOn("Color11")\' id="Color11" class="OptionColor" value="rgb(226, 226, 226)"></div>';
+            str += '<div onclick=\'selectColorOn("Color12")\' id="Color12" class="OptionColor" value="rgb(254, 200, 216)"></div>';
+            str += '</div>';
+            saveIdColorPicker = event.target.id;
+            $(this).html(str);
+            var value = document.getElementById("input"+event.target.id).getAttribute('value');
+            var rbs = document.getElementsByClassName("OptionColor");
+            for (const rb of rbs) {
+                if (rb.getAttribute('value') == value) {
+                    document.getElementById(rb.id).style.boxShadow = "0px 0px 9px 3px " + value;
+                    document.getElementById(rb.id).style.border = "1px solid white";
+                    document.getElementById(rb.id).style.width = "58px";
+                    document.getElementById(rb.id).style.height = "58px";
+                    console.log(rb.className);
+                    saveSelectId = rb.id;
+                    break;
+                }
+            }
+        }
+    });
+
+    function closeMenuColor() {
+        $(".CustomColorMenu").remove();
+    }
+
+    function selectColorOn(color) {
+        console.log(saveSelectId);
+        document.getElementById(saveSelectId).style.boxShadow = "none";
+        document.getElementById(saveSelectId).style.border = "none";
+        document.getElementById(saveSelectId).style.width = "60px";
+        document.getElementById(saveSelectId).style.height = "60px";
+        saveSelectId = color;
+        var value = document.getElementById(color).getAttribute('value');
+        document.getElementById(color).style.boxShadow = "0px 0px 9px 3px " + value;
+        document.getElementById(color).style.border = "1px solid white";
+        document.getElementById(color).style.width = "58px";
+        document.getElementById(color).style.height = "58px";
+
+        document.getElementById(saveIdColorPicker).style.backgroundColor = value;
+        document.getElementById("input"+saveIdColorPicker).value = "dupa";
+    }
+
+
+    $(document).mouseup(function(e) {
+        var container = $("#colorpicker");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            closeMenuColor();
+        }
+    });
+</script>
+
+</html>
